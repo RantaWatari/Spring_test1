@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+    <title>Spring boot</title>
+</head>
+<body>
+   <div style="display: flex;"> 
+    <div style="margin: 5px;">
+    <h1>普通のリスト</h1>
+    <table style="border-collapse: collapse; border: 2px solid rgb(0, 0, 0); text-align: center;">
+        <tr>
+            <td style="border: 2px solid rgb(0, 0, 0);">TEST ID</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">NAME</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">RANODM</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">FLG</td>
+        </tr>
+        <tr th:each="item:${Mod}">
+            <div th:if="${item.flg}==0">
+                <td th:text="${item.testId}" style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+                <td th:text="${item.name}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+                <td th:text="${item.randomNum}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+                <td th:text="${item.flg}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            </div>
+            <div th:if="${item.flg}==1">
+                <td th:text="${item.testId}" style="text-align: center;border: 2px solid rgb(0, 0, 0);background-color:gray;"></td>
+                <td th:text="${item.name}"style="text-align: center;border: 2px solid rgb(0, 0, 0);background-color:gray;"></td>
+                <td th:text="${item.randomNum}"style="text-align: center;border: 2px solid rgb(0, 0, 0);background-color:gray;"></td>
+                <td th:text="${item.flg}"style="text-align: center;border: 2px solid rgb(0, 0, 0);background-color:gray;"></td>
+            </div>
+        </tr>
+        </table>
+    </div>
+    <div style="margin: 5px;">
+    <h1>Stremで出したやつ</h1>
+    <table style="border-collapse: collapse; border: 2px solid rgb(0, 0, 0); text-align: center;">
+        <tr>
+            <td style="border: 2px solid rgb(0, 0, 0);">TEST ID</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">NAME</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">RANODM</td>
+        </tr>
+        <tr th:each="item:${ModStream}">
+            <td th:text="${item.testId}" style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${item.name}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${item.randomNum}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+        </tr> 
+    </table>
+   </div> 
+   </div>
+    <h1>Stremでlistにしたやつ</h1>
+    <table style="border-collapse: collapse; border: 2px solid rgb(0, 0, 0); text-align: center;">
+         <tr>
+            <td style="border: 2px solid rgb(0, 0, 0);"></td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+            <td style="border: 2px solid rgb(0, 0, 0);">-----</td>
+        </tr>
+        <!-- 一行目 index値を指定して表示-->
+        <tr>
+            <td style="border: 2px solid rgb(0, 0, 0);">RANODM</td>
+            <td th:text="${ModStream2[0]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[1]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[2]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[3]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[4]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[5]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[6]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[7]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[8]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+            <td th:text="${ModStream2[9]}"style="text-align: center;border: 2px solid rgb(0, 0, 0);"></td>
+        </tr>
+        <!-- 二行目 divでmodelをloop。tdに値を出力。-->
+        <tr>
+            <td style="border: 2px solid rgb(0, 0, 0);">RANODM</td>
+            <div th:each="item : ${ModStream2}">
+                <td style="text-align: center;border: 2px solid rgb(0, 0, 0);">[[${item}]]</td>
+            </div>
+        </tr>
+        <!-- 三行目 tdにloopも出力値も全部乗せ。-->
+        <tr>
+            <td style="border: 2px solid rgb(0, 0, 0);">RANODM</td>
+            <td th:each="item : ${ModStream2}" style="text-align: center;border: 2px solid rgb(0, 0, 0);">[[${item}]]</td>
+        </tr>
+   </table>
+ </body>
+</html>

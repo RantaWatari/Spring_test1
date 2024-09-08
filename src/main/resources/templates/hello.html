@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+    <title>Spring boot</title>
+</head>
+<body>
+    <p><span th:text="${Fuck}"></span></p>
+    <table>
+        <tr th:each="item:${Hello}">
+            <td th:text="${item}"></td>
+        </tr>
+    </table>
+</body>
+</html>
