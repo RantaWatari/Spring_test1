@@ -2,7 +2,9 @@ package com.example.demo;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.model.testModel;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class Index {
@@ -52,5 +56,37 @@ public class Index {
         model.addAttribute("Fuck", fuck);
         return "index";
     }
+
+    @GetMapping("/ttt")
+    public String getMethodName() {
+        Map<String, String> testmap = new HashMap<>(); 
+        testmap.put("2023","2023");
+        testmap.put("2999","2999");
+        testmap.put("2025","2025");
+        testmap.put("2024","2024");
+        
+        
+        Integer maxNum = null;
+        for(Map.Entry<String, String> entry : testmap.entrySet()){
+            if(maxNum == null){
+                maxNum = Integer.valueOf(entry.getValue());
+            }else{
+                Integer newNum = Integer.valueOf(entry.getValue());
+                if (maxNum < newNum) {
+                    maxNum = newNum;
+                }
+            }
+        };
+
+        System.err.println(maxNum);
+        
+        List<Integer> testlist = testmap.entrySet().stream().map(i -> Integer.valueOf(i.getValue())).toList();
+        for(Integer i: testmap.entrySet().stream().map(i -> Integer.valueOf(i.getValue())).toList()){
+            System.err.println(i);
+        }
+
+        return "Hello";
+    }
+    
     
 }
